@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9年級 Unit 2 情緒動詞／形容詞</title>
+<style>
+  :root{--bg:#f7f8fc;--card:#fff;--text:#1f2937;--muted:#64748b;--accent:#4f46e5;--ok:#15803d;--bad:#b91c1c;--line:#e5e7eb}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text)}
+  .wrap{max-width:860px;margin:auto;padding:24px}.hero{background:linear-gradient(135deg,#eef2ff,#fff);border:1px solid #dbeafe;border-radius:18px;padding:22px;margin-bottom:18px}
+  h1{margin:0 0 8px;font-size:clamp(24px,4vw,36px)} p{line-height:1.7}.subtitle{color:var(--muted);margin:0 0 16px}
+  .name-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:14px} label{display:block;font-weight:700;margin-bottom:8px}
+  input{width:100%;font-size:17px;padding:11px 12px;border:1px solid #cbd5e1;border-radius:10px}
+  .focus{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.focus div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .small{font-size:14px;color:var(--muted)}.tip{margin-top:14px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:12px;line-height:1.75}
+  .topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:14px 0}.score{font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 16px rgba(15,23,42,.04)}
+  .qnum{font-weight:700;color:var(--accent);margin-bottom:8px}.question{font-size:18px;line-height:1.7;margin-bottom:12px}.choices{display:grid;gap:8px}
+  button.choice{width:100%;text-align:left;background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:11px 13px;font-size:16px;cursor:pointer}
+  button.choice.correct{border-color:#22c55e;background:#f0fdf4} button.choice.wrong{border-color:#ef4444;background:#fef2f2}
+  .feedback{margin-top:10px;font-size:15px;min-height:24px;line-height:1.6}.ok{color:var(--ok)}.bad{color:var(--bad)}
+  button.main{border:0;border-radius:10px;padding:11px 16px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;font-size:15px} button.secondary{background:#475569}
+  .hidden{display:none}.result{text-align:center;padding:24px}.result h2{margin:0 0 10px;font-size:28px}.result .big{font-size:34px;font-weight:800;color:var(--accent);margin:10px 0}.result .student{font-size:18px;margin-bottom:8px}
+  @media(max-width:680px){.focus{grid-template-columns:1fr}.wrap{padding:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+  <h1>9年級 Unit 2 情緒動詞／形容詞</h1>
+  <p class="subtitle">Emotion Verbs & Adjectives Practice</p>
+  <div class="name-box"><label for="studentName">姓名</label><input id="studentName" type="text" placeholder="請輸入姓名"></div>
+  <div class="focus">
+    <div><b>be interested in</b><br><span class="small">對……感興趣</span></div>
+    <div><b>be excited about</b><br><span class="small">對……感到興奮</span></div>
+    <div><b>be bored with</b><br><span class="small">對……感到厭煩</span></div>
+    <div><b>be surprised at</b><br><span class="small">對……感到驚訝</span></div>
+  </div>
+  <div class="tip"><b>先看整個句型，不要只看字尾：</b><br>① A <b>interests / excites / bores / surprises</b> B → 情緒動詞<br>② B <b>is interested in / excited about / bored with / surprised at</b> A → -ed 形容詞<br>③ A <b>is interesting / exciting / boring / surprising</b> → -ing 形容詞<br><br><b>特別注意：</b> <b>surprised</b> 也可以是 <b>surprise</b> 的過去式。<br><span class="small">The test grades <b>surprised</b> Lisa. → 過去式動詞</span></div>
+</section>
+<div class="topbar"><div class="score">Score: <span id="score">0</span> / <span id="total">0</span></div><button class="main secondary" onclick="resetQuiz()">重新作答</button></div>
+<div id="quiz"></div>
+<section id="result" class="card result hidden"><h2>練習完成！</h2><div class="student" id="resultName"></div><div class="big" id="resultScore"></div><p id="resultMessage"></p><button class="main" onclick="resetQuiz()">重新作答</button></section>
+</div>
+<script>
+const questions=[
+{q:"The video game ________ John.",a:["interests","interested","interesting","is interested in"],c:0,e:"video game 讓 John 感興趣，所以用 interests。"},
+{q:"John is ________ the video game.",a:["interested in","interesting","interests","interested"],c:0,e:"John 是感到有興趣的人，所以用 be interested in。"},
+{q:"The video game is ________.",a:["interest","interested","interesting","interests"],c:2,e:"video game 是令人感興趣的，所以用 interesting。"},
+{q:"The trip ________ Amy.",a:["exciting","excited","excites","is excited about"],c:2,e:"trip 讓 Amy 感到興奮，所以用 excites。"},
+{q:"Amy is ________ the trip.",a:["excited","excited about","exciting","excites"],c:1,e:"Amy 是感受者，所以用 be excited about。"},
+{q:"The trip is ________.",a:["excited","exciting","excite","excites"],c:1,e:"trip 是令人興奮的，所以用 exciting。"},
+{q:"The class ________ Tom.",a:["bores","bored","boring","is bored with"],c:0,e:"class 讓 Tom 覺得無聊，所以用 bores。"},
+{q:"Tom is ________ the class.",a:["bored","boring","bored with","bores"],c:2,e:"Tom 是感受者，所以用 be bored with。"},
+{q:"The class is ________.",a:["bored","boring","bore","bores"],c:1,e:"class 是令人無聊的，所以用 boring。"},
+{q:"The test grades ________ Lisa yesterday.",a:["surprised","surprising","surprise","was surprised at"],c:0,e:"有 yesterday，而且主詞是 The test grades，所以 surprised 是 surprise 的過去式動詞。"},
+{q:"Lisa was ________ the test grades.",a:["surprised at","surprising","surprised","surprises"],c:0,e:"Lisa 是感到驚訝的人，所以用 was surprised at。"},
+{q:"The test grades were ________.",a:["surprised","surprising","surprise","surprises"],c:1,e:"test grades 是令人驚訝的，所以用 surprising。"},
+{q:"Which sentence means「這本書讓我感興趣」?",a:["I am interested in the book.","The book is interesting.","The book interests me.","I interest the book."],c:2,e:"A 讓 B 有感覺：The book interests me."},
+{q:"Which sentence means「我對旅行感到興奮」?",a:["The trip excites me.","I am excited about the trip.","The trip is exciting.","I excite the trip."],c:1,e:"我感到興奮：I am excited about the trip."},
+{q:"Which sentence means「這堂課很無聊」?",a:["The class bores me.","I am bored with the class.","The class is boring.","The class is bored."],c:2,e:"class 是令人無聊的：The class is boring."},
+{q:"Which sentence means「考試成績讓 Lisa 很驚訝」?",a:["Lisa was surprised at the test grades.","The test grades were surprising.","The test grades surprised Lisa.","Lisa surprised the test grades."],c:2,e:"A 讓 B 感到驚訝：The test grades surprised Lisa."},
+{q:"In the sentence “The test grades surprised Lisa,” what is “surprised”?",a:["an adjective","a past-tense verb","an -ing adjective","a preposition"],c:1,e:"surprised 後面直接接受詞 Lisa，所以這裡是過去式動詞。"},
+{q:"In the sentence “Lisa was surprised at the test grades,” what is “surprised”?",a:["an adjective","a past-tense verb","a noun","a preposition"],c:0,e:"was + surprised，描述 Lisa 的感受，因此這裡是形容詞。"}
+];
+let score=0,answered=0;
+function render(){document.getElementById('total').textContent=questions.length;const quiz=document.getElementById('quiz');quiz.innerHTML='';questions.forEach((item,i)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="qnum">Question ${i+1}</div><div class="question">${item.q}</div><div class="choices">${item.a.map((x,j)=>`<button class="choice" onclick="answer(${i},${j},this)">${String.fromCharCode(65+j)}. ${x}</button>`).join('')}</div><div class="feedback" id="fb${i}"></div>`;quiz.appendChild(card);});}
+function answer(i,j,btn){const card=btn.closest('.card');if(card.dataset.done)return;const name=document.getElementById('studentName').value.trim();if(!name){alert('請先輸入姓名，再開始作答。');document.getElementById('studentName').focus();return;}card.dataset.done='1';answered++;const item=questions[i];const buttons=[...card.querySelectorAll('.choice')];buttons[item.c].classList.add('correct');const fb=document.getElementById('fb'+i);if(j===item.c){score++;btn.classList.add('correct');fb.innerHTML=`<span class="ok">✓ Correct!</span> ${item.e}`;}else{btn.classList.add('wrong');fb.innerHTML=`<span class="bad">✗ 再看一次完整句型，不要只看字尾。</span><br>${item.e}`;}document.getElementById('score').textContent=score;if(answered===questions.length)showResult();}
+function showResult(){const name=document.getElementById('studentName').value.trim()||'同學';const pct=Math.round(score/questions.length*100);let msg=pct>=90?'Excellent! 你已經能清楚分辨情緒動詞、-ed 形容詞和 -ing 形容詞。':pct>=75?'Good job! 再注意 -ed、-ing，以及 be interested in / excited about / bored with / surprised at。':'再練一次。先找出誰是「感受者」，再判斷哪個人事物「造成情緒」。';document.getElementById('resultName').textContent=`姓名：${name}`;document.getElementById('resultScore').textContent=`${score} / ${questions.length}（${pct}%）`;document.getElementById('resultMessage').textContent=msg;const result=document.getElementById('result');result.classList.remove('hidden');result.scrollIntoView({behavior:'smooth',block:'center'});}
+function resetQuiz(){score=0;answered=0;document.getElementById('score').textContent='0';document.getElementById('result').classList.add('hidden');render();window.scrollTo({top:0,behavior:'smooth'});}render();
+</script>
+</body>
+</html>
